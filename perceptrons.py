@@ -50,25 +50,15 @@ class perceptron_learning:
         error = self.one_hot_encoder(label) - self.activate(out)
         self.weights += np.outer(in_vect, error) * self.lrate
 
+    def one_hot_encoder(self, hot, len=10):
+        encoded = np.zeros(len)
+        encoded[hot] = 1
+        return encoded
+
     def activate(self, out):
         out[out > 0] = 1
         out[out < 0] = 0
         return out
-
-    def one_hot_encoder(self, hot):
-        encoded = np.zeros(10)
-        encoded[hot] = 1
-        return encoded
-
-    def prep_input_data(self):
-        self.train_image_data = self.flatten_normalize_add_bias(self.train_image_data)
-        self.test_image_data = self.flatten_normalize_add_bias(self.test_image_data)
-
-    def flatten_normalize_add_bias(self, data):
-        data = np.reshape(data, (data.shape[0], 28 ** 2))
-        data = data / 255
-        data = np.insert(data, 28 ** 2, 1, axis=1)
-        return data
 
     def plot_epoch_pred_rate(self, test_correct, train_correct):
         epochs_axis = list(range(self.epochs + 1))
@@ -87,6 +77,16 @@ class perceptron_learning:
             data = np.fromfile(f, dtype=np.dtype(">B"))
             data = np.reshape(data, dims)
             return data
+
+    def prep_input_data(self):
+        self.train_image_data = self.flatten_normalize_add_bias(self.train_image_data)
+        self.test_image_data = self.flatten_normalize_add_bias(self.test_image_data)
+
+    def flatten_normalize_add_bias(self, data):
+        data = np.reshape(data, (data.shape[0], 28 ** 2))
+        data = data / 255
+        data = np.insert(data, 28 ** 2, 1, axis=1)
+        return data
 
 
 if __name__ == "__main__":
