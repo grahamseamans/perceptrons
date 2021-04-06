@@ -1,0 +1,10 @@
+so we need to make more bananas
+
+so we have the data
+
+we want to dot product the data and the output weights
+
+then that goes into a 10 * 1 list
+
+then we want to max that
+
