@@ -3,6 +3,8 @@ train-images-idx3-ubyte
 t10k-labels-idx1-ubyte
 train-labels-idx1-ubyte
 
+.vscode
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
